@@ -2,13 +2,18 @@
 
 using namespace  std;
 
+
 class Matrix{
 
 
 public:
 
 
-    Matrix(){
+    Matrix(int size):
+    m(size){
+
+A = new int[size];        
+
 
         for(int i = 0 ; i<m ;i++){
            
@@ -17,14 +22,45 @@ public:
         }
     }
 
-
- void SetM(int x){
-
-    m=  x ; 
- }
+  virtual ~Matrix(){
+    delete [] A;
+   }
 
 
-void SetV(int i , int j , int x){
+
+virtual void SetV(int i , int j , int x) = 0 ;
+ virtual int Get(int i , int j) = 0 ;
+ virtual void display() = 0 ;
+
+ 
+protected:
+    int *A;
+    int m;
+} ;
+ 
+
+
+
+
+
+
+
+class DiagonalMatrix : public  Matrix{
+
+
+public:
+
+
+    DiagonalMatrix(int size):
+    Matrix(size){
+
+    }
+
+
+
+
+
+virtual void SetV(int i , int j , int x){
  
  if(i == j){
 
@@ -33,18 +69,18 @@ void SetV(int i , int j , int x){
 
 }   
  
- int Get(int i , int j){
+ virtual int Get(int i , int j){
 
  if(i == j){
 
-   return  A[i-j];
+   return  A[i-1];
  }
 
  return 0 ;
 
  }
 
- void display(){
+ virtual void display(){
 
 
     int i , j ;
@@ -60,22 +96,38 @@ void SetV(int i , int j , int x){
            cout<<endl;
     }
  }
-private:
-    int A[10];
-    int m;
+
 } ;
  
+ class TriangularMatrix: public Matrix{
+
+      TriangularMatrix(int size):Matrix(size){
+
+     
+      }
+
+virtual void SetV(int i , int  j  , int x){
+
+}  
+
+virtual int Get(int i , int j){
+
+} 
+
+virtual void display(){
+    
+}
+ } ; 
 
 int main(){
 
      
-     Matrix m ;
-    m.SetM(4);
-    m.SetV(1 ,1 , 4) ;
-    m.SetV(2,2 , 4) ;
-    m.SetV(3 ,3 , 4) ;
-    m.SetV(4,4 , 4) ;
+    Matrix *m  = new DiagonalMatrix(5) ;
+ 
+    m->SetV(1 ,1 , 4) ;
+    m->SetV(2,2 , 4) ;
+    m->SetV(3 ,3 , 4) ;
+    m->SetV(4,4 , 4) ;
 
-
-     m.display();
+     m->display();
 }
