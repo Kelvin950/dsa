@@ -101,6 +101,7 @@ virtual void SetV(int i , int j , int x){
  
  class TriangularMatrix: public Matrix{
 
+public:
       TriangularMatrix(int size):Matrix(size){
 
      
@@ -108,14 +109,37 @@ virtual void SetV(int i , int j , int x){
 
 virtual void SetV(int i , int  j  , int x){
 
+   if(i >= j){
+    A[(i*(i-1))/2 + j-1]=x;
+     
+   }
+
+
 }  
 
 virtual int Get(int i , int j){
+ 
+ if(i >= j){
+    return A[(i*(i-1))/2 + j-1];
+ }
 
+ return 0;
 } 
 
 virtual void display(){
-    
+      
+       int i , j ;
+    for(i = 1; i<=m ;i++){
+           for(j = 1; j<=m; j++){
+
+            if(i>=j){
+                cout<< A[(i*(i-1))/2 + j-1];
+            }else{
+                cout<<0;
+            }
+           }
+           cout<<endl;
+    }
 }
  } ; 
 
@@ -130,4 +154,22 @@ int main(){
     m->SetV(4,4 , 4) ;
 
      m->display();
+     Matrix  *s =  new TriangularMatrix(5);
+    s->SetV(1 ,1 , 4) ;
+    s->SetV(2,1 , 4) ;
+  s->SetV(2,2 , 4) ;
+    s->SetV(3 ,1, 4) ;
+      s->SetV(3 ,2 , 4) ;
+  s->SetV(3 ,3 , 4) ;
+  s->SetV(4,1 , 4) ;
+  s->SetV(4,2 , 4) ;
+  s->SetV(4,3 , 4) ;
+  s->SetV(4,4 , 4) ;
+  s->SetV(5,1 , 4) ;
+  s->SetV(5,2 , 4) ;
+  s->SetV(5,3 , 4) ;
+  s->SetV(5,4 , 4) ;
+  s->SetV(5,5 , 4) ;
+        cout<<"Triangular Matrix"<<endl;
+s->display();
 }
