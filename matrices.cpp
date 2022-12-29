@@ -9,10 +9,10 @@ class Matrix{
 public:
 
 
-    Matrix(int size):
+    Matrix(int size, int size1):
     m(size){
 
-A = new int[size];        
+A = new int[size1];        
 
 
         for(int i = 0 ; i<m ;i++){
@@ -52,8 +52,8 @@ class DiagonalMatrix : public  Matrix{
 public:
 
 
-    DiagonalMatrix(int size):
-    Matrix(size){
+    DiagonalMatrix(int size ):
+    Matrix(size ,size){
 
     }
 
@@ -82,8 +82,8 @@ virtual void SetV(int i , int j , int x){
 
 
     int i , j ;
-    for(i = 1; i<m+1 ;i++){
-           for(j = 1; j<m+1; j++){
+    for(i = 1; i<=m ;i++){
+           for(j = 1; j<=m; j++){
 
             if(i==j){
                 cout<<A[i-1];
@@ -100,9 +100,12 @@ virtual void SetV(int i , int j , int x){
  class TriangularMatrix: public Matrix{
 
 public:
-      TriangularMatrix(int size):Matrix(size){
+      TriangularMatrix(int size)
+      : Matrix(size , size*((size+1)/2)) 
+     {
 
-     
+
+          
       }
 
 virtual void SetV(int i , int  j  , int x){
@@ -126,6 +129,7 @@ virtual int Get(int i , int j){
 
 virtual void display(){  
       
+  cout<<"something"<<this->A[13]<<endl;      
        int i , j ;
     for(i = 1; i<=m ;i++){
            for(j = 1; j<=m; j++){
@@ -142,18 +146,37 @@ virtual void display(){
  } ; 
 
 
+class SymmetricMatrix:public Matrix{
+      
+      public:
+      SymmetricMatrix(int size):
+      Matrix(size ,size*((size+1)/2)){
+
+              
+      
+      }
+
+      
+      virtual void SetV(int i , int j){
+       
+
+       
+
+      }
+
+} ;
 
 int main(){
 
      
-  {
+  
       Matrix *m  = new DiagonalMatrix(5) ;
  
     m->SetV(1 ,1 , 4) ;
     m->SetV(2,2 , 4) ;
     m->SetV(3 ,3 , 4) ;
     m->SetV(4,4 , 4) ;
-
+ m->SetV(5,5 , 4) ;
      m->display();
      Matrix  *s =  new TriangularMatrix(5);
     s->SetV(1 ,1 , 4) ;
@@ -173,5 +196,7 @@ int main(){
   s->SetV(5,5 , 4) ;
         cout<<"Triangular Matrix"<<endl;
 s->display();
-  }
+  
+
+  cout<<"Symmetric matrix"<<endl;
 }
