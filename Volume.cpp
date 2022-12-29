@@ -69,14 +69,16 @@ int binarySearch(int a[] , int key){
 }
 
 
+class slice{
+
+
+ 
+};
+
 int main(){
  
- int a[sizev] =  {1,2,3,5} ; 
- length=  4 ;
 
-cout<<binarySearch(a , 5)<<endl;
-cout <<a[0]<<endl;
-display(a);
+     slice v;
 
 
     return 0 ;

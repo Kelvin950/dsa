@@ -22,9 +22,10 @@ A = new int[size];
         }
     }
 
-  virtual ~Matrix(){
+   virtual ~Matrix(){
+  
     delete [] A;
-   }
+   } 
 
 
 
@@ -55,9 +56,6 @@ public:
     Matrix(size){
 
     }
-
-
-
 
 
 virtual void SetV(int i , int j , int x){
@@ -109,7 +107,7 @@ public:
 
 virtual void SetV(int i , int  j  , int x){
 
-   if(i >= j){
+   if(i >=j){
     A[(i*(i-1))/2 + j-1]=x;
      
    }
@@ -126,7 +124,7 @@ virtual int Get(int i , int j){
  return 0;
 } 
 
-virtual void display(){
+virtual void display(){  
       
        int i , j ;
     for(i = 1; i<=m ;i++){
@@ -143,10 +141,13 @@ virtual void display(){
 }
  } ; 
 
+
+
 int main(){
 
      
-    Matrix *m  = new DiagonalMatrix(5) ;
+  {
+      Matrix *m  = new DiagonalMatrix(5) ;
  
     m->SetV(1 ,1 , 4) ;
     m->SetV(2,2 , 4) ;
@@ -172,4 +173,5 @@ int main(){
   s->SetV(5,5 , 4) ;
         cout<<"Triangular Matrix"<<endl;
 s->display();
+  }
 }
