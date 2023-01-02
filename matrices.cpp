@@ -157,12 +157,88 @@ class SymmetricMatrix:public Matrix{
       }
 
       
-      virtual void SetV(int i , int j){
+      virtual void SetV(int i , int j , int x){
        
+             if(i >j){
 
+           
+           
+           this->A[(i*(i-1))/2 + j-1]=x;
+           
+        }
+        else  if( i==j)
+              this->A[(i*(i-1))/2 + j-1]=x;
+         else 
+             this->A[(j*(j-1))/2 + i-1]=x;
        
 
       }
+
+
+  virtual int Get(int i , int j){
+         
+            if(i >j){
+
+          return this->A[i*((i-1)/2) + (j-1)];
+        }
+        else  if( i==j)
+             return this->A[(j*((j-1)/2)+(i-1) )];
+         else 
+            return this->A[(j*((j-1)/2)+(i-1) )];
+  }
+
+
+  virtual void display(){
+    for(int i = 1; i<=m ;i++){
+      for(int j =  1; j<=m ;j++){
+              
+            
+            
+            if(i >j){
+
+            //  if(i == 2 && j==1){
+            //   cout<<i*(i-1)/2 <<endl;
+            //  }
+     cout << this->A[i*(i-1)/2 + (j-1)];
+        }
+        else  if( i==j)
+        
+        cout << this->A[(j*(j-1)/2+(i-1) )];
+         else 
+       cout << this->A[(j*(j-1)/2+(i-1) )];
+
+      } 
+      cout<<endl;
+    }
+
+  }
+} ;
+
+
+class Toeplitz:public  Matrix{
+
+   
+   Toeplitz(int size)
+   :Matrix(size , size+size-1){
+
+   }
+
+
+   virtual void SetV(int i , int  j   , int v){
+
+
+
+   }
+
+   virtual int Get(int i , int){
+
+   }
+
+
+virtual void display(){
+
+  
+}
 
 } ;
 
@@ -199,4 +275,22 @@ s->display();
   
 
   cout<<"Symmetric matrix"<<endl;
+      Matrix *sym =  new SymmetricMatrix(5);
+   sym->SetV(1 ,1 , 0) ;
+    sym->SetV(2,1 , 4) ;
+  sym->SetV(2,2 , 0) ;
+    sym->SetV(3 ,1, 4) ;
+      sym->SetV(3 ,2 , 4) ;
+  sym->SetV(3 ,3 , 0) ;
+  sym->SetV(4,1 , 4) ;
+  sym->SetV(4,2 , 4) ;
+  sym->SetV(4,3 , 4) ;
+  sym->SetV(4,4 , 0) ;
+  sym->SetV(5,1 , 4) ;
+  sym->SetV(5,2 , 4) ;
+  sym->SetV(5,3 ,4) ;
+  sym->SetV(5,4 , 4) ;
+  sym->SetV(5,5 , 0) ;
+   sym->display();
+     
 }
