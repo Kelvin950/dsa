@@ -263,7 +263,82 @@ for(int i = 1  ;i<=this->m ; i++){
 cout<<endl;
 }
 
-} };
+ } };
+
+
+ class TriDiagonal:public Matrix{
+
+
+public:
+     TriDiagonal(int size):
+     Matrix(size , 3*size -1){
+
+
+
+     }
+
+     virtual void SetV(int i , int  j , int v){
+
+
+
+
+     if(i-j == 1){
+      this->A[j-1] =v ; 
+     }
+     else if(i-j== 0){
+       this->A[(this->m-1)+ i-1] =v; 
+     }
+     else if(i-j == -1){
+       this->A[(2*(this->m)-1)+ i-1] =v;
+     }
+
+     else {
+      cout<< 0 ;
+     }
+        
+
+
+      
+
+     }
+
+     virtual int Get(int  i ,int j){
+        switch (i-j)
+           {
+           case  1:
+            /* code */
+            return this->A[j-1]  ; 
+            break;
+           
+           case 0:
+         return  this->A[(this->m-1)+ i-1] ; 
+           break ;
+
+
+           case -1:
+           return   this->A[(2*(this->m)-1)+ i-1] ;
+
+           break;
+
+           default:
+     return 0;
+            break;
+           }
+
+     }
+
+
+     virtual void display(){
+
+          for(int i =1 ; i<=m ;i++){
+            for(int j = 1 ; j<=m ;j++){
+                 cout<<this->Get(i , j);
+            }
+          }
+
+     }
+
+ } ;
 
 int main(){
 
@@ -330,4 +405,10 @@ s->display();
           Toe->SetV(5,1 ,7) ;   
 
           Toe->display();
+
+
+
+        Matrix *Tri = new TriDiagonal(5);
+
+   cout<<Tri->Get(1 ,3 ) ;
 }
