@@ -217,7 +217,7 @@ class SymmetricMatrix:public Matrix{
 
 class Toeplitz:public  Matrix{
 
-   
+  public: 
    Toeplitz(int size)
    :Matrix(size , size+size-1){
 
@@ -225,22 +225,45 @@ class Toeplitz:public  Matrix{
 
 
    virtual void SetV(int i , int  j   , int v){
-
+               if(i<=j){
+                this->A[j-i] =  v;
+               }
+              else 
+                this->A[this->m+(i-j-1)] =v ;
+              
 
 
    }
 
-   virtual int Get(int i , int){
+   virtual int Get(int i , int j){
+
+     if(i<=j){
+             return   this->A[j-i]  ;
+               }
+              else 
+              return   this->A[this->m+(i-j-1)]  ;
 
    }
 
 
 virtual void display(){
 
+for(int i = 1  ;i<=this->m ; i++){
+  for(int j =1;j<= this->m ; j++){
+
   
+
+           if(i<=j){
+           cout<<  this->A[j-i]  ;
+               }
+              else 
+            cout<<  this->A[this->m+(i-j-1)]  ;
+
+}
+cout<<endl;
 }
 
-} ;
+} };
 
 int main(){
 
@@ -292,5 +315,19 @@ s->display();
   sym->SetV(5,4 , 4) ;
   sym->SetV(5,5 , 0) ;
    sym->display();
-     
+
+   cout<<"Toeplitz matrix"<<endl;
+   Matrix  *Toe =  new Toeplitz(5);
+      Toe->SetV(1,1 , 1) ; 
+       Toe->SetV(1,2 , 2) ; 
+        Toe->SetV(1,3 , 2) ; 
+         Toe->SetV(1,4 , 3) ; 
+          Toe->SetV(1,5, 4) ;
+
+       Toe->SetV(2,1 , 5) ; 
+        Toe->SetV(3,1 , 6) ;  
+         Toe->SetV(4,1 , 8) ;  
+          Toe->SetV(5,1 ,7) ;   
+
+          Toe->display();
 }
