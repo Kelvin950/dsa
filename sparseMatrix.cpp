@@ -50,6 +50,38 @@ class Sparse{
         }
      }
      
+
+ Sparse operator+(Sparse &s){
+      int i,j,k;if(m!=s.m || n!=s.n)
+return Sparse(0,0,0);
+Sparse *sum=new Sparse(m,n,num+s.num);
+i=j=k=0;
+while(i<num && j<s.num)
+{
+if(ele[i].i<s.ele[j].i)
+sum->ele[k++]=ele[i++];
+else if(ele[i].i > s.ele[j].i)
+sum->ele[k++]=s.ele[j++];
+else
+{
+if(ele[i].j<s.ele[j].j)
+sum->ele[k++]=ele[i++];
+else if(ele[i].j > s.ele[j].j)
+sum->ele[k++]=s.ele[j++];
+else
+{
+sum->ele[k]=ele[i];
+sum->ele[k++].x=ele[i++].x+s.ele[j++].x;
+}
+}
+}
+for(;i<num;i++)sum->ele[k++]=ele[i];
+for(;j<s.num;j++)sum->ele[k++]=s.ele[j];
+sum->num=k;
+return *sum;
+  
+ }
+
      private:
      int m;
      int n;
@@ -58,6 +90,16 @@ class Sparse{
  };
 
 int main(){
+          
 
+          Sparse matrix(5, 5, 5) ;
+          matrix.read();
+          matrix.display();
+
+    Sparse matrix2(5,5,5) ;
+    matrix2.read();
+    Sparse Matrix =  matrix + matrix2 ; 
+
+    Matrix.display() ; 
 
 }
