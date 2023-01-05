@@ -31,7 +31,7 @@ public :
         
         int exp ;
         int coeff;
-        for(int  i= this->n ; i>=0 ;i++){
+        for(int  i= this->n ; i>0 ;i--){
              
             
             cin >>exp ;
@@ -48,12 +48,22 @@ public :
 
         void display(){
 
-         for(int  i= this->n ; i>=0 ;i++){
+         for(int  i= this->n ; i>0 ;i--){
               
             
-            cout<<term[i].coeff <<((term[i].exp>0)?"x":"")<<(term[i].exp >0 ? term[i].exp : ' ')<< "+ ";
+            cout<<term[i].coeff  ;
             
-           
+            if(term[i].exp > 0 )
+                    cout<<"x" ;
+            else 
+            cout<<"";
+          if(term[i].exp > 0)
+                    cout<<term[i].exp ;
+            else 
+                    cout<<""; 
+            
+              if(i > 1)
+                    cout<<" + ";
         }
 
         cout<<endl;
@@ -110,3 +120,16 @@ private:
 } ; 
 
 
+
+int main(){
+
+      
+
+      Polynomial v(3);
+
+      v.insertValues();
+      v.display();
+
+
+
+}
