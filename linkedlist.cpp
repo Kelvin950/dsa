@@ -73,6 +73,19 @@ int sum(struct Node *p){
     
     return s;
 }
+
+int Max(struct Node *p){
+
+    int max = INT32_MIN;
+    while(p){
+        if(p->data>max)
+                max=p->data;
+        p=p->next;
+    }
+
+    return max;
+
+}
 int main(){
 
 
@@ -80,6 +93,7 @@ int main(){
     create(A,5);
     display(first);
      cout<<"length of linked list "<<count(first)<<endl;
-     cout<<"sum of linked list"<<sum(first)<<endl;
+     cout<<"sum of linked list "<<sum(first)<<endl;
+     cout<<"Maximum number "<<Max(first);
 }
   
