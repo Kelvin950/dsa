@@ -46,6 +46,33 @@ void Rdisplay(struct Node *p){
         Rdisplay(p->next);
     }
 }
+
+int count (struct Node *p){
+    
+    int c = 0 ;
+
+    while(p){
+
+          c++ ;
+           p= p->next;
+    }
+
+return c;
+
+}
+
+int sum(struct Node *p){
+
+    int sum =0 ;
+    while (p)
+    {
+        /* code */
+        sum+=p->data;
+        p=p->next ; 
+    }
+    
+    return sum;
+}
 int main(){
 
 
@@ -53,4 +80,4 @@ int main(){
     create(A,5);
     display(first);
 }
- 
+  
