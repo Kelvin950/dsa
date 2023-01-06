@@ -38,6 +38,14 @@ void display(struct Node *p){
         p= p->next ;
     }
 }
+
+void Rdisplay(struct Node *p){
+
+    if(p!=NULL){
+        cout<<p->data ;
+        Rdisplay(p->next);
+    }
+}
 int main(){
 
 
@@ -45,3 +53,4 @@ int main(){
     create(A,5);
     display(first);
 }
+ 
