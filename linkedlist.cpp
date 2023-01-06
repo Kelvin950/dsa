@@ -63,15 +63,15 @@ return c;
 
 int sum(struct Node *p){
 
-    int sum =0 ;
+    int s =0 ;
     while (p)
     {
         /* code */
-        sum+=p->data;
+        s+=p->data;
         p=p->next ; 
     }
     
-    return sum;
+    return s;
 }
 int main(){
 
@@ -79,5 +79,7 @@ int main(){
     int A[5] =  {1,2,3,4,6} ; 
     create(A,5);
     display(first);
+     cout<<"length of linked list "<<count(first)<<endl;
+     cout<<"sum of linked list"<<sum(first)<<endl;
 }
   
