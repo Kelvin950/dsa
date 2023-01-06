@@ -71,9 +71,9 @@ public :
     }   
 
 
-    Polynomial  operator+(Polynomial  &s){
+   const  Polynomial  &operator+(Polynomial  &s){
 
-     Polynomial temp(this->n + s.n);
+     Polynomial *temp =  new Polynomial(this->n + s.n);
             
       int i ,j,k ; 
 
@@ -83,21 +83,21 @@ public :
 
             if(this->term[i].exp >s.term[j].exp ){
 
-                 temp.term[k].exp =  this->term[i].exp ; 
-                 temp.term[k].coeff =  this->term[i].coeff ; 
+                 temp->term[k].exp =  this->term[i].exp ; 
+                 temp->term[k].coeff =  this->term[i].coeff ; 
                  k++ ;
                  i++;
             }
             else if(this->term[i].exp < s.term[j].exp){
-                  temp.term[k].exp =  s.term[j].exp ; 
-                 temp.term[k].coeff =  s.term[j].coeff ; 
+                  temp->term[k].exp =  s.term[j].exp ; 
+                 temp->term[k].coeff =  s.term[j].coeff ; 
                  j++ ;
                  k++;
             }
             else {
 
-                  temp.term[k].exp =  s.term[j].exp ; 
-                 temp.term[k].coeff =  s.term[j].coeff  + this->term[i].coeff; 
+                  temp->term[k].exp =  s.term[j].exp ; 
+                 temp->term[k].coeff =  s.term[j].coeff  + this->term[i].coeff; 
                  j++ ;
                  k++;
                  i++;
@@ -107,7 +107,7 @@ public :
 
 
 
-return temp ;
+return *temp ;
          
     }    
 
@@ -126,7 +126,7 @@ int main(){
       
 
       Polynomial v(3);
-
+  
       v.insertValues();
       v.display();
     
@@ -134,7 +134,7 @@ int main(){
      z.insertValues();
     z.display();
 
-   Polynomial  y =  v + z ;
+  Polynomial y =  v + z ;
 
 //    y.display();
 
