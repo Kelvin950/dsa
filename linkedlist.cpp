@@ -100,28 +100,57 @@ int Min(struct Node *p){
 
 }
 
-struct Node  *linearSearc(struct Node *p , int key){
-  
- struct Node *q =  NULL;
-     while(p){
-
-        if(p->data == key){
-               
-             q= p->next ; 
-             p->next =  first ; 
-             first =  p ;
-
-             return  p ;
-
-
-        }
-        q = p ;
-        p= p->next ; 
-     }
+struct Node * LSearch(struct Node *p,int key)
+{
+struct Node *q;
+while(p!=NULL)
+{
+if(key==p->data){
+q->next=p->next;
+p->next=first;
+first=p;
+return p;
+}
+q=p;
+p=p->next;
+}
 
 
-    return  NULL;
-} 
+
+
+return NULL;
+}
+
+void insert(struct Node *p , int index , int x){
+
+struct Node *temp ; 
+   if(index  < 0 || index>count(p) ){
+    return ;
+   }
+   
+
+   temp =  new struct Node();
+   temp->data =  x ; 
+
+if(index ==0){
+
+    temp->next =  first ;
+    first = temp;
+}     
+else{
+
+    for(int i = 0;i<index-1 ;i++){
+
+         p=p->next ;
+    
+
+    }
+
+    temp->next = p->next ;
+    p->next =  temp;
+}
+
+}
 int main(){
  
 
@@ -133,9 +162,17 @@ int main(){
      cout<<"Maximum number "<<Max(first)<<endl;
       cout<<"Minimum number "<<Min(first)<<endl;
 
-      if(linearSearc(first, 4)){
-        cout<<"Key found "<<linearSearc(first ,4 )->data;
-      }
-      else cout<<"key not found";
+// struct Node  *temp = LSearch(first, 4) ;
+//       if(temp){
+//         cout<<"Key found "<<temp->data;
+//       }
+//       else cout<<"key not found";
+    
+ 
+    insert(first , 3 , 10);
+
+    display(first);
+
+        
 }
   
