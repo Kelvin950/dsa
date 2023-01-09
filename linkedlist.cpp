@@ -223,6 +223,24 @@ int Delete(struct Node *p , int index){
 
   }
 
+ bool isSorted(struct Node  *p ){
+
+  int x =  INT32_MIN; 
+
+  while (p)
+  {
+    /* code */
+    if(p-> data < x){
+        return false;
+    }
+    x=p->data;
+    p=p->next; 
+  
+  }
+  
+return true ;
+ }
+ 
 int main(){
  
 
@@ -245,9 +263,7 @@ int main(){
     // insertSorted(first ,  5);
     // insertSorted(first , 10);
     display(first);
-    Delete(first , 4);
-    display(first);
-
+   cout<<isSorted(first)<<endl;
         
 }
   
