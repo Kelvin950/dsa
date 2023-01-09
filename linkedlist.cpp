@@ -99,8 +99,31 @@ int Min(struct Node *p){
     return min;
 
 }
-int main(){
 
+struct Node  *linearSearc(struct Node *p , int key){
+  
+ struct Node *q =  NULL;
+     while(p){
+
+        if(p->data == key){
+               
+             q= p->next ; 
+             p->next =  first ; 
+             first =  p ;
+
+             return  p ;
+
+
+        }
+        q = p ;
+        p= p->next ; 
+     }
+
+
+    return  NULL;
+} 
+int main(){
+ 
 
     int A[5] =  {1,2,3,4,6} ; 
     create(A,5);
@@ -108,6 +131,11 @@ int main(){
      cout<<"length of linked list "<<count(first)<<endl;
      cout<<"sum of linked list "<<sum(first)<<endl;
      cout<<"Maximum number "<<Max(first)<<endl;
-      cout<<"Minimum number "<<Min(first);
+      cout<<"Minimum number "<<Min(first)<<endl;
+
+      if(linearSearc(first, 4)){
+        cout<<"Key found "<<linearSearc(first ,4 )->data;
+      }
+      else cout<<"key not found";
 }
   
