@@ -187,11 +187,47 @@ void insertSorted(struct Node *p , int value){
 
 
 }
+
+
+int Delete(struct Node *p , int index){
+
+    struct Node *q=NULL;
+
+    int x = -1 ;
+
+    if(index <1  || index  > count(p)){
+            
+            return -1;
+
+    }
+
+    if(index ==1){
+
+        q=first ; 
+        x = first->data;
+        first=first->next;
+        delete q;
+        return x;
+    }
+    else{
+             for(int i = 0 ; i<index-1 ; i++){
+                q=p;
+                p=p->next;
+             }
+
+             q->next  =p->next;
+             x=p->data ;
+             return x ;
+             delete p;
+    }
+
+  }
+
 int main(){
  
 
-    // int A[5] =  {1,2,3,4,6} ; 
-    // create(A,5);
+    int A[5] =  {1,2,3,4,6} ; 
+    create(A,5);
     // display(first);
     //  cout<<"length of linked list "<<count(first)<<endl;
     //  cout<<"sum of linked list "<<sum(first)<<endl;
@@ -206,8 +242,10 @@ int main(){
     
  
     // insert(first , 3 , 10);
-    insertSorted(first ,  5);
-    insertSorted(first , 10);
+    // insertSorted(first ,  5);
+    // insertSorted(first , 10);
+    display(first);
+    Delete(first , 4);
     display(first);
 
         
