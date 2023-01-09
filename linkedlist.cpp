@@ -136,7 +136,7 @@ if(index ==0){
 
     temp->next =  first ;
     first = temp;
-}     
+}       
 else{
 
     for(int i = 0;i<index-1 ;i++){
@@ -151,16 +151,52 @@ else{
 }
 
 }
+
+
+void insertSorted(struct Node *p , int value){
+ 
+ struct Node *q = NULL; 
+ 
+ struct Node *t = new struct Node();
+ t->data =  value ; 
+ t->next =NULL ; 
+
+     
+     if(first==NULL){
+
+        first =  t;
+     }
+  else{
+
+    while(p && p->data< value){
+         
+        
+        q=p ;
+        p=p->next ;}
+    
+    if(p==first){
+        t->next=first ;
+        first=t ;
+    }else{
+
+        t->next = q->next ; 
+        q->next = t ;
+    }
+    }
+  
+
+
+}
 int main(){
  
 
-    int A[5] =  {1,2,3,4,6} ; 
-    create(A,5);
-    display(first);
-     cout<<"length of linked list "<<count(first)<<endl;
-     cout<<"sum of linked list "<<sum(first)<<endl;
-     cout<<"Maximum number "<<Max(first)<<endl;
-      cout<<"Minimum number "<<Min(first)<<endl;
+    // int A[5] =  {1,2,3,4,6} ; 
+    // create(A,5);
+    // display(first);
+    //  cout<<"length of linked list "<<count(first)<<endl;
+    //  cout<<"sum of linked list "<<sum(first)<<endl;
+    //  cout<<"Maximum number "<<Max(first)<<endl;
+    //   cout<<"Minimum number "<<Min(first)<<endl;
 
 // struct Node  *temp = LSearch(first, 4) ;
 //       if(temp){
@@ -169,8 +205,9 @@ int main(){
 //       else cout<<"key not found";
     
  
-    insert(first , 3 , 10);
-
+    // insert(first , 3 , 10);
+    insertSorted(first ,  5);
+    insertSorted(first , 10);
     display(first);
 
         
