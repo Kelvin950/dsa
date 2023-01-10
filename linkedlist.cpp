@@ -225,20 +225,42 @@ int Delete(struct Node *p , int index){
 
  bool isSorted(struct Node  *p ){
 
-  int x =  INT32_MIN; 
+     struct Node *q =  p->next ; 
 
-  while (p)
+cout<<q->data<<endl;
+  while (q)
   {
     /* code */
-    if(p-> data < x){
+    if(p-> data > q->data){
         return false;
     }
-    x=p->data;
-    p=p->next; 
-  
+
+    p=q ; 
+    q=p->next ;
   }
   
 return true ;
+ }
+
+ void removeDuplicate(struct Node *p){
+
+    struct Node *q =  p->next ;
+
+    while (q)
+    {
+        /* code */
+
+        if(p->data !=q->data){
+            p= q;
+            q=p->next ;
+        }
+        else{
+            p->next =  q->next ;
+            delete q ;
+            q=p->next;
+        }
+    }
+    
  }
  
 int main(){
