@@ -6,7 +6,7 @@ using namespace std ;
 struct Node{
     int data ;
     struct Node *next ;
-}*first ;
+}*first , *second = NULL,*third = NULL ;
 
 
 void create(int  A[], int n){
@@ -18,6 +18,27 @@ first = new struct Node ;
 first->data = A[0] ;
 first->next = nullptr;
 last =first;
+
+   for(i =1 ; i<n ;i++){
+     t=  new struct Node;
+     t->data =A[i];
+     t->next =nullptr;
+     last->next=t ;
+     last =t ;
+   }
+
+
+}
+
+void create2(int  A[], int n){
+
+int i ;
+struct Node *t , *last;
+
+second = new struct Node ;
+second->data = A[0] ;
+second->next = nullptr;
+last =second;
 
    for(i =1 ; i<n ;i++){
      t=  new struct Node;
@@ -262,13 +283,88 @@ return true ;
     }
     
  }
+
+ void Reverse(struct Node *p){
  
+ struct Node  *q =  NULL ,*r =NULL;
+ 
+
+while(p != NULL){
+    r=q ; 
+    q=p;
+    p=p->next ;
+    q->next =  r;
+}
+
+
+ 
+first=  q ;
+
+     
+ }
+
+ void Concat(struct Node *p , struct Node *q){
+
+    third =p ; 
+
+    while (p->next !=NULL)
+    {
+        /* code */
+        p=p->next ;
+
+
+    }
+    p->next =  q ; 
+    
+ }
+ 
+ void Merge(struct Node *p , struct Node *q){
+
+    struct Node *last ;
+    if(p->data < q->data){
+        third= last = p;
+        p=p->next ;
+        third->next =NULL;
+    }
+    else{
+        third = last=q;
+        q=q->next ;
+        third->next =NULL;
+    }
+
+    while (p && q)
+    {
+        /* code */
+        if(p->data <q->data){
+            last->next=p ;
+            last=p;
+            p=p->next ;
+            last->next=NULL;
+        
+        }
+
+        else{
+            last->next =q;
+            last=q;
+            q=q->next;
+            last->next= NULL;
+        }
+
+    }
+
+
+    if(p!=NULL)last->next = p;
+    if(q) last->next= q;
+             
+ }
 int main(){
  
 
     int A[5] =  {1,2,3,4,6} ; 
     create(A,5);
-    // display(first);
+
+create2(A ,5);
+    display(second);
     //  cout<<"length of linked list "<<count(first)<<endl;
     //  cout<<"sum of linked list "<<sum(first)<<endl;
     //  cout<<"Maximum number "<<Max(first)<<endl;
@@ -284,8 +380,10 @@ int main(){
     // insert(first , 3 , 10);
     // insertSorted(first ,  5);
     // insertSorted(first , 10);
-    display(first);
-   cout<<isSorted(first)<<endl;
-        
+//     display(first);
+//    cout<<isSorted(first)<<endl;
+     
+Merge(first , second);
+        display(third);
 }
   
