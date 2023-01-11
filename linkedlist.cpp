@@ -357,14 +357,36 @@ first=  q ;
     if(q) last->next= q;
              
  }
+
+ int isLoop(struct Node *f){
+
+    struct Node *q  ;struct Node *p ;
+
+do{
+    p=p->next ;
+    q=q->next;
+    q= q? q->next : q;
+}while(p && q && p != q);
+         
+        
+        if(p==q){
+            return 1;
+        }
+        else return 0;
+
+ }
 int main(){
  
+
+ struct Node *t1 , *t2 ;
+
 
     int A[5] =  {1,2,3,4,6} ; 
     create(A,5);
 
-create2(A ,5);
-    display(second);
+    // t1 = first->next->next;
+    // t2=first->next->next->next->next;
+    // t2->next = t1;
     //  cout<<"length of linked list "<<count(first)<<endl;
     //  cout<<"sum of linked list "<<sum(first)<<endl;
     //  cout<<"Maximum number "<<Max(first)<<endl;
@@ -383,7 +405,7 @@ create2(A ,5);
 //     display(first);
 //    cout<<isSorted(first)<<endl;
      
-Merge(first , second);
-        display(third);
+ 
+cout<<isLoop(first);
 }
   
