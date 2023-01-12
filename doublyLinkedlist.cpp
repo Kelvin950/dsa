@@ -97,13 +97,70 @@ void Insert(struct Node *p , int index , int x){
     }
 }
 
+int Delete(struct  Node *p , int index)
+{
+    /* data */
+    struct Node  *q ;
+    int x= -1 , i ;
+
+    if(index < 1 || index > Length(p)){
+        return -1;
+    }
+
+     if(index ==1){
+
+         first =  first->next ;
+           if(first)first->prev = NULL;
+        
+        x= p->data ;
+        delete p;
+     
+     }
+
+     else{
+        for(i = 0 ; i<index-1 ;i++){
+             p=p->next ;
+        }
+
+        p->prev->next = p->next;
+        if(p->next){
+            p->next->prev =p->prev;
+        }
+        x=p->data;
+        delete p;
+     }
+
+     return x ;
+
+};
+
+
+void Reverse(struct Node *p){
+
+
+    struct Node *temp;
+
+    while (p!=NULL)
+    {
+        /* code */
+        temp =  p->next ; 
+        p->next =  p->prev ;
+        p->prev =temp;
+        p=p->prev;
+        if(p->next == NULL){
+            first = p;
+        }
+    }
+    
+}
+
 int main(){
 
  int A[5] = {1,2,4,5,6};
 
  create(A ,5);
 
-Insert(first , 2 , 3);
+Delete (first ,1);
     Display(first);
 
     
