@@ -103,6 +103,133 @@ void display(){
         p=p->next ;
     }
 }
+
+
+int Max(){
+
+ Node  *p =  first ;
+
+int max =  INT32_MIN;
+
+  while(p){
+
+    if(p->data >max){
+             max = p->data;
+    }
+     p=p->next;
+  }
+
+return max ; 
+
+}
+
+int Min(){
+  
+   Node *q =  first->next;
+ int min =first->data;
+   while (q)
+   {
+    /* code */
+             if(q->data < min){
+               min =  q->data;
+             }
+            
+              q=q->next ;
+              
+           
+   }
+   
+     return min ;
+}
+
+int LinearSearch(int key){
+
+
+Node *p =first;
+Node *q ;
+while (p)
+{
+  /* code */
+  if(p->data == key){
+          q->next = p->next;
+          p->next =  first;
+          first = p;
+
+          return p->data;
+        
+
+  }
+  q=p;
+p= p->next ;
+}
+
+
+ 
+
+return -1;
+}
+
+
+
+int Sum(){
+       
+         int sum = 0 ;
+         Node *p = first ;
+     while (p)
+     {
+      /* code */
+       sum+=p->data; 
+       p=p->next ;
+     }
+     
+  return sum;
+} 
+
+
+void Reverse(){
+
+Node * p =first ;
+Node  *r =  NULL ; 
+Node *q= NULL;
+
+
+    while (p)
+    {
+      /* code */
+      r=q ;
+      q=p;
+      
+      p=p->next ;
+      q->next = r;
+    }
+    first = q;
+ 
+
+}
+
+
+void Concatenate(LinkedList *list){
+  Node * p =first ;
+  Node *q;
+      if(first== list->first){
+        return  ;
+      }
+   while (p)
+   {
+    /* code */
+    q=p;
+    p=p->next;
+   }
+              
+
+     q->next =  list->first;
+
+}
+
+void Merge(){
+  
+}
+
 } ;
 
 
@@ -112,13 +239,16 @@ int main(){
 
 
     LinkedList *list =  new LinkedList();
+    LinkedList *list2 =  new LinkedList();
        cout<<list->Length()<<endl;
     int A[] =  {1,2,3,4};
-      
+
+      int b[]= {10,12,13,14} ;
       list->Create(A , 4);
+      list2->Create(b,4);
          
         list->display();
-    list->Insert(4 , 5);
-    list->display();
-        cout<<list->Length()<<endl;
+  list->Concatenate(list2);
+   list->display();
+        
 }
