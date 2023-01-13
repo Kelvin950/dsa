@@ -226,8 +226,48 @@ void Concatenate(LinkedList *list){
 
 }
 
-void Merge(){
-  
+void Merge(LinkedList *list){
+         Node *p = first ,*third =NULL , *last=NULL;
+         
+    
+    while(p!=NULL && list->first != NULL){
+       if(p->data < list->first->data){
+
+        last=third= p ;
+        p=p->next ; 
+        last->next = NULL;
+       }
+       else{
+
+         last=third= list->first ;
+        list->first=list->first->next ; 
+        last->next = NULL;
+       }
+
+       if(p->data < list->first->data){
+                   
+                    last->next  = p ;
+                    last=p ;
+                    last->next = NULL;
+                    p=p->next;
+       }else{
+              last->next  = list->first ;
+                    last=list->first ;
+                    last->next = NULL;
+                    list->first=list->first->next;
+
+       }
+    }
+
+    if(p!=NULL){
+              last->next =  p;  
+
+    }
+    if(list->first !=NULL){
+             last->next=list->first;
+    }
+      
+         first =third ;
 }
 
 } ;
@@ -248,7 +288,7 @@ int main(){
       list2->Create(b,4);
          
         list->display();
-  list->Concatenate(list2);
+  list->Merge(list2);
    list->display();
         
 }
