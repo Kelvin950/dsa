@@ -228,10 +228,8 @@ void Concatenate(LinkedList *list){
 
 void Merge(LinkedList *list){
          Node *p = first ,*third =NULL , *last=NULL;
-         
-    
-    while(p!=NULL && list->first != NULL){
-       if(p->data < list->first->data){
+     Node *q =  list->first;     
+    if(p->data < q->data){
 
         last=third= p ;
         p=p->next ; 
@@ -239,22 +237,26 @@ void Merge(LinkedList *list){
        }
        else{
 
-         last=third= list->first ;
-        list->first=list->first->next ; 
+         last=third= q ;
+        q=q->next ; 
         last->next = NULL;
        }
+    while(p!=NULL && q != NULL){
+       
 
-       if(p->data < list->first->data){
+       if(p->data < q->data){
                    
                     last->next  = p ;
                     last=p ;
+                     p=p->next;
                     last->next = NULL;
-                    p=p->next;
+                   
        }else{
-              last->next  = list->first ;
-                    last=list->first ;
+              last->next  = q ;
+                    last=q ;
+                      q=q->next;
                     last->next = NULL;
-                    list->first=list->first->next;
+                  
 
        }
     }
@@ -263,8 +265,8 @@ void Merge(LinkedList *list){
               last->next =  p;  
 
     }
-    if(list->first !=NULL){
-             last->next=list->first;
+    if(q !=NULL){
+             last->next=q;
     }
       
          first =third ;
@@ -286,8 +288,7 @@ int main(){
       int b[]= {10,12,13,14} ;
       list->Create(A , 4);
       list2->Create(b,4);
-         
-        list->display();
+        
   list->Merge(list2);
    list->display();
         

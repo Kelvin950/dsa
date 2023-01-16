@@ -130,14 +130,39 @@ void Display(struct Node *p){
      }while(p!=Head);
 
 }
+
+
+void Reverse(struct Node *p){
+
+
+    struct Node *q  =NULL;
+    struct Node *r =NULL; struct Node *v = Head; 
+   
+   
+    do{
+           r=q ;
+          q=p;
+         
+          p=p->next ;
+          q->next = r ;
+        
+    }while(p != Head) ;
+      
+      Head->next =  q ; 
+      Head =  q ; 
+
+}
 int main(){
 
     int A[]={1,2,3,4,5};
 
     create(A,5);
-    Delete(Head , 1);
-        Display(Head);
+    // Delete(Head , 1);
+        // Display(Head);
 
-        cout<<Length(Head)<<endl;
+        // cout<<Length(Head)<<endl;
+        Reverse(Head);
+        Display(Head);
+        // cout<<Head->data;
     return 0 ;
 }
