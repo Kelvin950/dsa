@@ -297,7 +297,30 @@ Node *addTwoLinkedList(Node *a , Node *b){
 
  int carry = 0 ;
  Node *sum =NULL;
+    
+ a = reverse(a);
+ b =  reverse(b); 
 
+ while (a || b ||carry)
+ {
+  /* code */ 
+  int x  =  a ? a->data: 0 ;
+  int y =  b ?b->data : 0; 
+
+    Node *temp = new Node();
+    temp->data =  (carry + x + y) % 10000 ;
+    temp->next =  sum;
+    sum =temp ;
+
+    carry =  ((carry + x + y) /10000) | 0 ;   
+
+
+     if(a)a=a->next ;
+     if(b) b=b->next;   
+
+ }
+ 
+return sum;
 
 }
 int main(){
@@ -329,9 +352,14 @@ int main(){
  }
 
 
- first =  reverse(first);   
-second =  reverse(second);        
 
+Node *result =  new Node() ;
+result = addTwoLinkedList(first, second);     
+
+ 
+ int a =  (10000/10000);
+ a = (a| 0);
+cout<<a<<endl;
 
 
 }
