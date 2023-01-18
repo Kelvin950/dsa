@@ -275,21 +275,63 @@ void Merge(LinkedList *list){
 } ;
 
 
+Node *reverse(Node *p){
+ 
+  Node *q =NULL,*r=NULL; 
 
+  while(p){
+
+    r =q ;
+    q= p ;
+    p=p->next ;
+    q->next =r ;
+  }
+
+    
+return q ;
+
+}
+
+
+Node *addTwoLinkedList(Node *a , Node *b){
+
+ int carry = 0 ;
+ Node *sum =NULL;
+
+
+}
 int main(){
 
+ Node *first= new Node();
+   
+   first->data =  3 ; 
+  
+  for(int i =1  ; i<=3 ;i++){
+      
+      Node *temp =  new Node();
+      temp->data = i*4 ; 
+      
+      temp->next = first ; 
+      first=temp ;
+
+  }
+
+ Node *second=  new Node();
+
+ second->data =  5 ; 
+
+ for(int i =  3  ; i<=6 ;i++){
+
+  Node *temp = new Node() ; 
+  temp->data=  i*2 ; 
+  temp->next  =second ; 
+  second= temp ;
+ }
 
 
-    LinkedList *list =  new LinkedList();
-    LinkedList *list2 =  new LinkedList();
-       cout<<list->Length()<<endl;
-    int A[] =  {1,2,3,4};
+ first =  reverse(first);   
+second =  reverse(second);        
 
-      int b[]= {10,12,13,14} ;
-      list->Create(A , 4);
-      list2->Create(b,4);
-        
-  list->Merge(list2);
-   list->display();
-        
+
+
 }

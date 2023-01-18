@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+#include <string>
 
 using namespace std ;
 
@@ -383,6 +385,21 @@ int main(){
 
     int A[5] =  {1,2,3,4,6} ; 
     create(A,5);
+    int *b =  new int[5];
+int i= 0 ;
+    while(first){
+      
+      b[i]=  first->data;
+        i++;
+     first= first->next;
+    
+     
+    }
+
+    for(int  i = 0 ; i<5 ;i++){
+           
+           cout<<b[i]<<endl;
+    }
 
     // t1 = first->next->next;
     // t2=first->next->next->next->next;
@@ -406,6 +423,22 @@ int main(){
 //    cout<<isSorted(first)<<endl;
      
  
-cout<<isLoop(first);
+
+string a = to_string(2223);
+a="000000"+a;
+cout<<a.substr(a.length()-4, a.length());
+string q = "12";
+q =q.append(a.substr(a.length()-4, a.length()));
+cout<<stoi("230")<<endl;
+stringstream obj;
+obj << "18446744073709551615" ;
+ 
+   long long int  c ; 
+ obj >> c ;
+
+ stringstream obj2;
+ obj2 << c;
+ obj2>>q.replace(0 ,1, "");
+cout<<c<<endl;
 }
   
