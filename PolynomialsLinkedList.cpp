@@ -151,6 +151,7 @@ Node *last =NULL;
         p->Display();
     
     Polynomial *r = p->Add(q);
+    cout<<endl;
     r->Display();
 
  }
