@@ -48,9 +48,71 @@ class Polynomial{
           Node  *p =  first;
 
           while(p){
-            cout<< p->coff<<"x"<<p->exp;
+            cout<< p->coff<<"x"<<p->exp<<"+ ";
             p=p->next ; 
           }
+     }
+
+   Polynomial * Add(Polynomial *second){
+
+         Node *p =  this->first;
+         Node *q =  second->first;
+   Polynomial *z = new Polynomial();
+         while(p && q){
+
+            if(p->exp > q->exp){
+                Node *temp = new Node();
+                        temp->exp = p->exp ;
+                        temp->coff= p->coff;
+                    if(z->first==NULL &&p==first &&q == second->first){
+                        
+                       z->first = temp ; 
+                       z->last = temp;
+                      
+                    }else{
+                           
+                            z->last->next=temp;
+                            z->last = temp;
+                              
+                    }
+
+                     p=p->next;
+            }else if(p->exp < q->exp){
+                        Node *temp = new Node();
+                        temp->exp = q->exp ;
+                        temp->coff= q->coff;
+                if(z->first==NULL &&p==first &&q == second->first){
+                       
+                       z->first = temp ; 
+                       z->last = temp;
+
+                       q=q->next;
+                    
+                    }else{
+                            Node *temp = new Node();
+                            temp->exp = q->exp ;
+                            temp->coff = q->coff;
+                            z->last->next=temp;
+                            z->last = temp;
+                            q=q->next;
+                    }
+
+
+            }
+            else{
+                    Node *temp = new Node();
+                    temp->exp = p->exp;
+                    temp->coff = q->coff + p->coff ; 
+                    z->last->next = temp;
+                    z->last =temp;
+                    p=p->next;
+                    q=q->next ;
+
+            }
+
+         }
+    
+return z ; 
      }
 
  private:
@@ -67,5 +129,13 @@ Node *last =NULL;
 
      p->Create();
      p->Display();
+         
+
+         Polynomial *q = new Polynomial();
+        q->Create();
+        p->Display();
+    
+    Polynomial *r = p->Add(q);
+    r->Display();
 
  }
