@@ -454,20 +454,24 @@ v[i]= 0;
 
 int main(){
  
- struct Array arr= {{12,3,4,3,12} ,20 ,5} ;
-struct Array arr1 =  {{3,6,7,15,20} ,10 ,5};
-struct Array *arr3 ;
+  int A[6]={0, 1, 2, 2, 0, 1};
+  int B[6]={0, 1, 5, 4, 0, 3} ;
 
+int min = 10000 ,index=-1;
+  for(int i = 0 ; i< 6 ; i++){
 
-duplicateSorted(arr) ;
-
-
+    if(A[i]> 1 && min > B[i]){
+        cout<<A[i]<<B[i]<<endl;
+        min = B[i] ;
+        index = i;
+    }
+  }
          
 // Reverse(&arr);
 //  display(*arr3);  
   
 
- 
+ cout<<endl<<index;
 
 return  0 ;
 }
