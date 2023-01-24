@@ -68,15 +68,17 @@ class Polynomial{
                         
                        z->first = temp ; 
                        z->last = temp;
-                      
+                         p=p->next;
+                       cout<<z->first->coff<<endl;
                     }else{
                            
                             z->last->next=temp;
                             z->last = temp;
+                              p=p->next;
                               
                     }
 
-                     p=p->next;
+                   
             }else if(p->exp < q->exp){
                         Node *temp = new Node();
                         temp->exp = q->exp ;
@@ -86,28 +88,41 @@ class Polynomial{
                        z->first = temp ; 
                        z->last = temp;
 
-                       q=q->next;
+                      
                     
                     }else{
-                            Node *temp = new Node();
-                            temp->exp = q->exp ;
-                            temp->coff = q->coff;
+                            // Node *temp = new Node();
+                            // temp->exp = q->exp ;
+                            // temp->coff = q->coff;
                             z->last->next=temp;
                             z->last = temp;
-                            q=q->next;
+                            // q=q->next;
                     }
 
-
+                 q=q->next;
             }
             else{
+
+
                     Node *temp = new Node();
                     temp->exp = p->exp;
                     temp->coff = q->coff + p->coff ; 
+                    if(z->first==NULL &&p==first &&q == second->first){
+                        
+                       z->first = temp ; 
+                       z->last = temp;
+                         p=p->next;
+                         q=q->next;
+                    }
+                    else{
+
+                    
+
+
                     z->last->next = temp;
                     z->last =temp;
                     p=p->next;
-                    q=q->next ;
-
+                    q=q->next ;}
             }
 
          }
