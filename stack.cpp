@@ -11,7 +11,7 @@ class Stack{
    {
       this->size = size;
        this->top = -1 ; 
-       this->S = new  int[this->size];
+       this->S = new  char[this->size];
 
         }
 
@@ -36,7 +36,7 @@ class Stack{
     return top == size-1;
  }
       
-  void push(int x){
+  void push(char x){
         if(Full()){
        cerr<<"Stack  overflow"<<endl;   
        return ;
@@ -47,8 +47,8 @@ class Stack{
 
    }
 
-   int pop(){
-         int x=-1;
+   char pop(){
+         char x=-1;
     if(Empty()){
         cerr<<"Stack underflow"<<endl;
         return x; 
@@ -57,10 +57,9 @@ class Stack{
     top--;
     return x;
    }
-
-   int peek(int index){
+char peek(char index){
        
-       int x =  -1; 
+       char x =  -1; 
        if(top-index+1 < 0){
         cerr<<"invalid index"<<endl;
         return x ;
@@ -71,7 +70,7 @@ class Stack{
    }
     
 
-    int StackTop(){
+   char StackTop(){
 
         if(Empty()){
             return -1 ;
@@ -83,24 +82,55 @@ class Stack{
     private:
     int size; 
     int top;
-    int *S; 
+    char *S; 
 } ;
 
+   
+ 
+ bool isBalanced(Stack *s , char *exp){
+ 
+ int i = 0 ; 
+
+ for(int  i = 0 ; exp[i] !='\0' ; i++ ){
+
+          if(exp[i] == '('){
+            s->push(exp[i]);
+
+          }   
+      else if(exp[i]== ')'){
+        if(s->Empty())return false ;
+        s->pop();
+
+      }
+
+
+ }
+
+   return s->Empty();
+
+
+ }
 
 int main(){
+ 
+ char *p  = "((a+b) *(c+d)))";
 
-    Stack s(5); 
+    Stack s(10); 
+
+
+//  s.push(3) ;
+//  s.push(2);
+//  s.push(4);
+
+
+// s.Display();
+
+// cout<<s.peek(1);
+// cout<<s.pop()<<endl;
+
+// s.Display();
+
  
 
- s.push(3) ;
- s.push(2);
- s.push(4);
-
-
-s.Display();
-
-cout<<s.peek(1);
-cout<<s.pop()<<endl;
-
-s.Display();
+cout<<isBalanced(&s , p);
 }
