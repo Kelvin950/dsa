@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 using namespace std ; 
 
 
@@ -93,13 +94,17 @@ char peek(char index){
 
  for(int  i = 0 ; exp[i] !='\0' ; i++ ){
 
-          if(exp[i] == '('){
+          if(exp[i] == '(' || exp[i]=='[' || exp[i]=='{'){
             s->push(exp[i]);
 
           }   
-      else if(exp[i]== ')'){
+      else if(exp[i]== ')' || exp[i]==']' || exp[i]=='}'){
+
         if(s->Empty())return false ;
-        s->pop();
+      char x =   s->pop();
+           if(abs(exp[i]-x )> 2){
+            return false;
+           }
 
       }
 
@@ -113,7 +118,7 @@ char peek(char index){
 
 int main(){
  
- char *p  = "((a+b) *(c+d)))";
+ char *p  = "{([a+b] * [c-d))/e}";
 
     Stack s(10); 
 
