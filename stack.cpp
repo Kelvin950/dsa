@@ -37,7 +37,7 @@ class Stack{
     return top == size-1;
  }
       
-  void push(char x){
+  void push(int  x){
         if(Full()){
        cerr<<"Stack  overflow"<<endl;   
        return ;
@@ -48,8 +48,8 @@ class Stack{
 
    }
 
-   char pop(){
-         char x=-1;
+  int pop(){
+        int  x=-1;
     if(Empty()){
         cerr<<"Stack underflow"<<endl;
         return x; 
@@ -71,7 +71,7 @@ char peek(char index){
    }
     
 
-   char StackTop(){
+   int StackTop(){
 
         if(Empty()){
             return -1 ;
@@ -116,13 +116,55 @@ char peek(char index){
 
  }
 
+ bool isOperand(char x){
+
+
+   if(x == '/' || x== '*' || x== '-' || x== '+'){
+          return   false  ;
+   }
+   return true ;
+ }     
+
+int eval(Stack *s , char *exp){
+   int x2 ,x1 ;
+   for(int  i = 0 ; exp[i]!='\0' ;i++){
+     
+    if(isOperand(exp[i])){
+        s->push(exp[i]-'0');
+    }
+        else{
+         x2 = s->pop();
+         x1 = s->pop();
+         
+         switch(exp[i]){
+
+            case '-':
+               s->push(x1-x2);
+              break;
+                          case '+':
+               s->push(x1+x2);
+              break;
+                          case '/':
+               s->push(x1/x2);
+              break;
+                          case '*':
+               s->push(x1*x2);
+              break;
+         }
+
+        }
+   } 
+ 
+      return  s->pop();
+}
+
 int main(){
  
- char *p  = "{([a+b] * [c-d))/e}";
+ char *p  = "234*+82/-";
 
     Stack s(10); 
 
-
+    
 //  s.push(3) ;
 //  s.push(2);
 //  s.push(4);
@@ -137,5 +179,6 @@ int main(){
 
  
 
-cout<<isBalanced(&s , p);
+// cout<<isBalanced(&s , p);
+ cout<<eval(&s ,p);
 }
