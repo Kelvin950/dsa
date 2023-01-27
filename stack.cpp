@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <cstring>
 using namespace std ; 
 
 
@@ -37,7 +38,7 @@ class Stack{
     return top == size-1;
  }
       
-  void push(int  x){
+  void push(char  x){
         if(Full()){
        cerr<<"Stack  overflow"<<endl;   
        return ;
@@ -48,8 +49,8 @@ class Stack{
 
    }
 
-  int pop(){
-        int  x=-1;
+ char pop(){
+       char  x=-1;
     if(Empty()){
         cerr<<"Stack underflow"<<endl;
         return x; 
@@ -71,7 +72,7 @@ char peek(char index){
    }
     
 
-   int StackTop(){
+   char StackTop(){
 
         if(Empty()){
             return -1 ;
@@ -123,7 +124,33 @@ char peek(char index){
           return   false  ;
    }
    return true ;
- }     
+ }    
+
+ int predence(char x){
+
+ int v= 0;
+   switch (x)
+   {
+      case '+':
+   v =1 ;
+      break;
+   
+   case '-':
+  v= 1;
+    break; 
+
+    case '/':
+   v=2 ;
+    break;
+   
+   case '*':
+   v=2;
+   break;
+   
+     
+   }
+return v ; 
+ }
 
 int eval(Stack *s , char *exp){
    int x2 ,x1 ;
@@ -158,9 +185,52 @@ int eval(Stack *s , char *exp){
       return  s->pop();
 }
 
+char  *toPostfix(Stack *s , char *exp ){
+         
+ int  i = 0 ;
+ int j = 0;
+ char *postfix = new char[strlen(exp)+1];
+      while(exp[i]!='\0'){
+
+            if(isOperand(exp[i])){
+
+               postfix[j] = exp[i];
+               i++;
+               j++;
+            }
+            else {
+
+               if(predence(exp[i])> predence(s->StackTop())){
+                  s->push(exp[i]);
+                  i++;
+               }
+               else{
+                    postfix[j]=  s->pop();
+                    j++;
+                  //   i++;
+
+               }
+            }
+
+
+
+ 
+      }
+        
+          while (!s->Empty())
+          {
+            /* code */
+            postfix[j]=s->pop();
+            j++;
+          }
+          
+
+return postfix;
+}
+
 int main(){
  
- char *p  = "234*+82/-";
+ char *p  = "a+b+c*d";
 
     Stack s(10); 
 
@@ -180,5 +250,5 @@ int main(){
  
 
 // cout<<isBalanced(&s , p);
- cout<<eval(&s ,p);
+ cout<<toPostfix(&s ,p);
 }
