@@ -14,9 +14,9 @@ public:
     T first();
     bool isEmpty(){
         return front==rear;
-    };
+    }; 
     bool isFull(){
-        return rear==size-1 ;
+        return (rear+1)%size==front ;
     };
  
 // private:
@@ -29,7 +29,7 @@ public:
 
 template <typename T>
 Queue<T>::Queue(int size):size(size){
-    front=rear=-1; 
+    front=rear=0; 
     A = new T[this->size];
 }
 
@@ -41,7 +41,7 @@ T Queue<T>::deque(){
     }
 
 
-    front++;
+    front=  (front + 1)%size;
 
   return A[front];
 
@@ -55,7 +55,7 @@ void Queue<T>::enqueue(T x){
         return ; 
     }
     
-    rear++;
+    rear =  (rear+1)%size ;
     A[rear] = x ;
 
 }
@@ -74,9 +74,15 @@ T Queue<T>::Rear(){
 template <typename  T>
 void display(Queue<T> q){
 
-    for(int  i =q.front + 1 ; i<=q.rear ;i++ ){
-        cout<<q.A[i]<<endl;        
-    }
+int i =q.front+1;
+
+do
+{
+    /* code */
+    cout<<q.A[i]<<endl;
+    i =  (i+1)%q.size ;
+} while (i != (q.rear+1)%q.size);
+
 
   
 
