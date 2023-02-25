@@ -6,7 +6,8 @@ using namespace std ;
 
 int main(){
 
-
+string s= "ajdc"; 
+s.l
     char s[] =  {'w' , 'e' , '?' , 'L', '\0'}; 
 int  i = 0 ,word = 0;
     for(; s[i]!= '\0' ; i++){

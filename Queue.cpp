@@ -92,9 +92,9 @@ do
 int main(){
 
 
-    Queue<int > q(5);
+    Queue<int > q(3);
 
-    q.enqueue(3);
+    q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
 

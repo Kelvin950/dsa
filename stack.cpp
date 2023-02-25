@@ -75,7 +75,7 @@ char peek(char index){
    char StackTop(){
 
         if(Empty()){
-            return -1 ;
+            return 0 ;
         }
     return S[top];
     }
@@ -160,8 +160,8 @@ int eval(Stack *s , char *exp){
         s->push(exp[i]-'0');
     }
         else{
-         x2 = s->pop();
-         x1 = s->pop();
+         x1 =  s->StackTop() ? s->pop() :0;
+         x2 =  s->StackTop() ? s->pop() :0;
          
          switch(exp[i]){
 
@@ -230,7 +230,7 @@ return postfix;
 
 int main(){
  
- char *p  = "a+b+c*d";
+ char *p  = "22213";
 
     Stack s(10); 
 
@@ -246,9 +246,15 @@ int main(){
 // cout<<s.pop()<<endl;
 
 // s.Display();
-
- 
+//  cout<<toPostfix(&s ,p);
 
 // cout<<isBalanced(&s , p);
- cout<<toPostfix(&s ,p);
+ cout<<eval(&s ,p);
+
+
+}
+
+void unReachable(){
+
+   cout<<"hello world"<<endl;
 }
