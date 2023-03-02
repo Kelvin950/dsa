@@ -1,7 +1,16 @@
 #include <iostream>
-
+ 
 using namespace std ; 
 
+
+ 
+ class Node{
+
+    public:
+    Node *leftChilld; 
+    Node *rightChild;
+    int data;
+ } ;
 
 class Nodequeue {
  
@@ -84,15 +93,8 @@ Nodequeue *front ;
 Nodequeue *rear ; 
 } ;
 
- 
- class Node{
 
-    public:
-    Node *leftChilld; 
-    Node *rightChild;
-    int data;
- }
-  ;
+  
 class BTree{
          
          public:
@@ -110,9 +112,11 @@ class BTree{
     Queue *queue= new Queue();
       int data ; 
  cout<<"Enter the data of the root"<<endl;
- cin>> data ; 
+ cin>>data ; 
 
-    root->data=data ;
+    root =  new Node() ;
+    root->data =  data ;
+    
      queue->enqueue(root);  
       
 
@@ -169,3 +173,14 @@ private:
    
 
 } ;
+
+
+
+int main(){
+
+BTree  *Tree =new BTree();
+
+Tree->CreateTree();
+
+    return 0 ;
+}
