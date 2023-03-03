@@ -204,49 +204,73 @@ private:
 
 } ;
 
-void BTree::Postorder(Node *p){
+// void BTree::Postorder(Node *p){
    
 
- if(p){
+//  if(p){
 
          
-      Postorder(p->leftChilld);
-      Postorder(p->rightChild);
-      cout<<p->data;
-        }      
-    };
+//       Postorder(p->leftChilld);
+//       Postorder(p->rightChild);
+//       cout<<p->data;
+//         }      
+//     };
 
 
-    void BTree::Inorder(Node *p){
-      if(p){
+//     void BTree::Inorder(Node *p){
+//       if(p){
 
          
-    Inorder(p->leftChilld);
-      cout<<p->data;
-    Inorder(p->rightChild);
+//     Inorder(p->leftChilld);
+//       cout<<p->data;
+//     Inorder(p->rightChild);
       
-        }    
-    };
+//         }    
+//     };
 
 
-void BTree::Preorder(Node *p){
+// void BTree::Preorder(Node *p){
 
-        if(p){
+//         if(p){
 
-         cout<<p->data;
-      Preorder(p->leftChilld);
-      Preorder(p->rightChild);
-        }
-}
+//          cout<<p->data;
+//       Preorder(p->leftChilld);
+//       Preorder(p->rightChild);
+//         }
+// }
+
+ int count(Node *p){
+
+    if(p){
+
+      return count(p->leftChilld) + count(p->rightChild)+1 ;
+    }
+    return  0 ;
+
+ } 
 
 
+ int height(Node *p){
+
+   int x = 0  ,y= 0 ;
+   if(p ==0){
+      return 0 ;
+   }
+    x = height(p->leftChilld);
+    y = height(p->rightChild);
+
+    if(x > y){
+      return x+1;
+    }
+    else return  y + 1 ;
+ }
 
 int main(){
 
 BTree  *Tree =new BTree();
 
 Tree->CreateTree();
-
+Tree->LevelOrder();
 
     return 0 ;
 }
