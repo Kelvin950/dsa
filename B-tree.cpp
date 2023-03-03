@@ -156,7 +156,33 @@ cin >>x ;
 }  
 
     };
-    void LevelOrder(Node *p);
+    void LevelOrder(){
+
+       Queue *q =  new Queue();
+         cout<<root->data<<endl;
+       q->enqueue(root);
+
+       while(!q->isEmpty()){
+         
+         Node *p =  q->dequeue(); 
+
+         if(p->leftChilld){
+
+            cout<<p->leftChilld->data<<endl;
+         q->enqueue(p->leftChilld);
+         }
+         if(p->rightChild){
+  cout<<p->rightChild->data<<endl;
+         q->enqueue(p->rightChild);
+
+         }
+       
+
+
+       }
+        
+
+    };
     void Height(Node *root);
    void  CreateRoot(int data){
         
