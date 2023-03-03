@@ -103,9 +103,13 @@ class BTree{
             root = NULL;
          }
     
-    void Preorder(Node *p) ;
-    void Postorder(Node *p);
-    void Inorder(Node *p);
+    void Preorder(Node *p) {Preorder(root) ;};
+    void Postorder(Node *p){
+      Postorder(root); 
+    };
+    void Inorder(Node *p){
+   Inorder(root);
+    };
     void CreateTree(){
 
      Node *p=NULL  ; Node *t=NULL;
@@ -174,6 +178,41 @@ private:
 
 } ;
 
+void BTree::Postorder(Node *p){
+   
+
+ if(p){
+
+         
+      Postorder(p->leftChilld);
+      Postorder(p->rightChild);
+      cout<<p->data;
+        }      
+    };
+
+
+    void BTree::Inorder(Node *p){
+      if(p){
+
+         
+    Inorder(p->leftChilld);
+      cout<<p->data;
+    Inorder(p->rightChild);
+      
+        }    
+    };
+
+
+void BTree::Preorder(Node *p){
+
+        if(p){
+
+         cout<<p->data;
+      Preorder(p->leftChilld);
+      Preorder(p->rightChild);
+        }
+}
+
 
 
 int main(){
@@ -181,6 +220,7 @@ int main(){
 BTree  *Tree =new BTree();
 
 Tree->CreateTree();
+
 
     return 0 ;
 }
