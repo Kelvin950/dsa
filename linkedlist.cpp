@@ -362,7 +362,7 @@ first=  q ;
 
  int isLoop(struct Node *f){
 
-    struct Node *q  ;struct Node *p ;
+    struct Node *q =f ;struct Node *p=f ;
 
 do{
     p=p->next ;
