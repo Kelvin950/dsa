@@ -46,7 +46,7 @@ public:
       }
     
     temp->data =x ;
-
+ 
     if(isEmpty()){
         front =rear= temp ;
     }else{
