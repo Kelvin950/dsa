@@ -28,13 +28,14 @@ Node *r , *p = NULL;
   
 if(root ==NULL){
     
-    p = new Node() ;
-    p->data =  key ; 
-
+    root = new Node() ;
+    root->data =  key ; 
+ root->lchild = root->rchild =NULL ;
 }
 
  while (t)
  {
+  
  r=t; 
 
   if(t->data ==key){
@@ -50,18 +51,68 @@ if(root ==NULL){
       t=t->lchild;
   }
  }
+
  p = new Node() ;
     p->data =  key ; 
+     p->lchild = p->rchild =NULL ;
+
+     if(r->data > key)
+        r->lchild =  p  ;
+    else  
+        r->rchild = p;
+}
+
+
+bool Search(int key){
+
+Node *t =root; 
+
+
+while (t)
+{ 
+
+    if(t->data ==key){
+        return  true ;
+    }
+ 
+ if(t->data > key){
+       
+       t=t->lchild ;
+ }
+ else {
+
+t=t->rchild; 
+ }
+
+    /* code */
+}
+
+return false;
+
 
 }
 
 
+void inorder(Node *p){
+
+ 
+ if(p){
+ 
+  inorder(p->lchild); 
+  cout<<p->data ; 
+  inorder(p->rchild) ;
+ }
+
+}
+
 int main (){
  
 
- insert(4) ;
+ insert(5) ;
+insert(3)  ;
 
- 
 
+
+ inorder(root) ;
 
 }
