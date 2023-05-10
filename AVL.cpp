@@ -17,6 +17,49 @@ Node *root = NULL ;
 
 
 
+int newHeight(Node *p){
+
+    int hl = p &&p->lchild ? p->lchild->height :0 ;
+    int hr = p &&p->rchild ? p->rchild->height : 0 ;
+
+    return hl>hr ? hl+1 : hr+1 ;
+
+}
+
+
+int BalanceFactor(Node *p){
+    int hl = p &&p->lchild ? p->lchild->height :0 ;
+    int hr = p &&p->rchild ? p->rchild->height : 0 ;
+
+    return hl -hr ;
+}
+
+
+Node * llRotation(Node *p){
+Node *pl = p->lchild ;
+Node *prl =pl->rchild ;
+
+pl->rchild =  p ;
+p->lchild = prl ;
+
+p->height =  newHeight(p) ;
+pl->height = newHeight(pl) ;
+
+
+
+if(p==root){
+    root= pl ;
+}
+
+return pl ; 
+
+}
+
+Node *lrRotation(Node *p){
+
+}
+
+
 Node  *RInsert(Node *p , int key){
       
 
@@ -42,6 +85,29 @@ else if(p->data < key){
      
      p->rchild =RInsert(p->rchild , key) ; 
 }
+
+
+// p->height = newHeight(p) ;
+
+
+// const int treeBalanced = BalanceFactor(p) ;
+// const int lefttreeBalanced = BalanceFactor(p->lchild) ;
+// const int RightTreeBalanced =BalanceFactor(p->rchild) ;
+
+// if(treeBalanced ==2 && lefttreeBalanced ==1){
+//  return llRotation(p) ;
+// }
+// if(treeBalanced ==2 && lefttreeBalanced == -1){
+//  return NULL ;
+// }
+// if(treeBalanced == -2 && RightTreeBalanced == -1){
+//  return NULL ;
+// }
+// if(treeBalanced == -2 && RightTreeBalanced == 1){
+//  return NULL ;
+// }
+
+
 
 return  p; 
 
