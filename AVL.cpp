@@ -213,14 +213,128 @@ int x ,y ;
     return 0 ;
 }
 
+
+Node *inSucc(Node *p){ 
+
+
+while (p && p->lchild)
+{
+    /* code */
+    p=p->lchild ;
+}
+
+return  p ;
+
+}
+
+Node *inPred(Node *p){
+ 
+
+while (p && p->rchild)
+{
+    /* code */
+    p=p->rchild ;
+}
+
+return p;
+}
+
+
+Node *Delete(Node *p , int key){
+  
+
+Node *q=NULL; 
+
+if(p==NULL){
+    return NULL;
+}
+ 
+if(!p->rchild  && !p->lchild){
+      
+
+ if(p==root){
+    root=NULL ;
+  }
+
+ delete p ;
+ 
+ return NULL ;
+ 
+    
+
+}
+
+if(p->data > key){
+
+p->lchild = Delete(p->lchild, key);
+}
+
+else if(p->data < key){
+ p->rchild= Delete(p->rchild,key);
+} 
+  
+else{
+
+if(Height(p->lchild) > Height(p->rchild)){
+  
+
+  q =  inPred(p->lchild) ;
+  p->data = q->data ; 
+
+  p->lchild = Delete(p->lchild, q->data);
+
+
+}
+else{
+
+
+  q =  inSucc(p->rchild) ;
+  p->data = q->data ; 
+
+  p->rchild = Delete(p->rchild, q->data);
+}
+
+
+}
+
+
+const int treeBalanced = BalanceFactor(p) ;
+const int lefttreeBalanced = BalanceFactor(p->lchild) ;
+const int RightTreeBalanced =BalanceFactor(p->rchild) ;
+
+
+cout<<p->data<<" "<<treeBalanced<<lefttreeBalanced<<RightTreeBalanced<<"ew"<<endl;
+if(treeBalanced ==2 && lefttreeBalanced ==1){
+ return llRotation(p) ;
+}
+if(treeBalanced ==2 && lefttreeBalanced == -1){
+ return lrRotation(p);
+}
+if(treeBalanced == -2 && RightTreeBalanced == -1){
+ return rrRotation(p) ;
+}
+if(treeBalanced == -2 && RightTreeBalanced == 1){
+ return rlRotation(p) ;
+}
+
+
+return p ;
+
+}
+
 int main(){
 
 
-root =  RInsert(root , 5) ;
-RInsert(root , 10) ;
-RInsert(root , 9) ;
+root =  RInsert(root , 10) ;
+RInsert(root , 15) ;
+RInsert(root , 5) ;
+RInsert(root ,6) ;
+RInsert(root , 4);
 
 Inorder(root) ;
+
+Delete(root ,4) ;
+Delete(root  ,15);
 
 cout<<Height(root)<<endl;
 

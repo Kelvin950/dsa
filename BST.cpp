@@ -268,23 +268,16 @@ return p ;
 int main (){
  
 
- root = RInsert(root  , 5) ;
-RInsert(root , 3)  ;
+ root = RInsert(root  , 10) ;
+RInsert(root , 15)  ;
 RInsert(root, 6) ;
-RInsert(root , 4) ;
-RInsert(root ,10);
+RInsert(root , 7) ;
+RInsert(root ,5);
 
 
- inorder(root) ;
 
-cout<<"\n";
-cout << Height(root)<<endl;
-cout<<minimum(root)->data<<endl;
-cout<<maximum(root)->data<<endl;
-
-cout<<inSucc(root)->data<<endl;
-cout<<inPred(root)->data<<endl;
-
-Delete(root ,5) ;
+Delete(root , 5) ;
+Delete(root,  15);
+cout<<Height(root) <<endl;
 inorder(root) ;
 }
