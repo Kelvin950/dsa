@@ -55,8 +55,73 @@ return pl ;
 
 }
 
-Node *lrRotation(Node *p){
 
+Node  *lrRotation(Node *p){
+ 
+ Node *pl =  p->lchild ;
+ Node  *plr =  pl->rchild;
+
+
+ p->lchild = plr->rchild ;
+ pl->rchild = plr->lchild ;
+  
+
+  plr->rchild =  p ; 
+  plr->lchild = pl ;
+
+ p->height =  newHeight(p);
+ pl->height = newHeight(pl); 
+ plr->height = newHeight(plr) ;
+
+
+ if(root==p){
+    root=plr ;
+ }
+
+
+return plr ;
+}
+
+Node *rrRotation(Node *p){
+   
+  Node *pr = p->rchild ; 
+  Node *prl=  pr->lchild ;
+
+  pr->lchild =  p ;
+  p->rchild = prl ;
+
+
+  p->height = newHeight(p) ;
+  pr->height = newHeight(pr) ;
+
+  if(root==p){
+      root= pr ;
+  }
+
+  return  pr ;
+}
+
+Node *rlRotation(Node *p){
+  
+  Node *pr =  p->rchild ;
+  Node *prl =  pr->lchild ;
+
+  p->rchild =  prl->lchild ;
+  pr->lchild = prl->rchild ;
+
+  prl->lchild =p;
+  prl->rchild  =pr ;
+
+
+ p->height = newHeight(p) ;
+ pr->height  =newHeight(pr) ;
+ prl->height = newHeight(prl) ;
+
+  if(root== p){
+    root= prl ;
+  }
+
+  return prl; 
 }
 
 
@@ -87,25 +152,25 @@ else if(p->data < key){
 }
 
 
-// p->height = newHeight(p) ;
+p->height = newHeight(p) ;
 
 
-// const int treeBalanced = BalanceFactor(p) ;
-// const int lefttreeBalanced = BalanceFactor(p->lchild) ;
-// const int RightTreeBalanced =BalanceFactor(p->rchild) ;
+const int treeBalanced = BalanceFactor(p) ;
+const int lefttreeBalanced = BalanceFactor(p->lchild) ;
+const int RightTreeBalanced =BalanceFactor(p->rchild) ;
 
-// if(treeBalanced ==2 && lefttreeBalanced ==1){
-//  return llRotation(p) ;
-// }
-// if(treeBalanced ==2 && lefttreeBalanced == -1){
-//  return NULL ;
-// }
-// if(treeBalanced == -2 && RightTreeBalanced == -1){
-//  return NULL ;
-// }
-// if(treeBalanced == -2 && RightTreeBalanced == 1){
-//  return NULL ;
-// }
+if(treeBalanced ==2 && lefttreeBalanced ==1){
+ return llRotation(p) ;
+}
+if(treeBalanced ==2 && lefttreeBalanced == -1){
+ return lrRotation(p);
+}
+if(treeBalanced == -2 && RightTreeBalanced == -1){
+ return rrRotation(p) ;
+}
+if(treeBalanced == -2 && RightTreeBalanced == 1){
+ return rlRotation(p) ;
+}
 
 
 
@@ -151,9 +216,9 @@ int x ,y ;
 int main(){
 
 
-root =  RInsert(root , 10) ;
-RInsert(root , 5) ;
-RInsert(root , 3) ;
+root =  RInsert(root , 5) ;
+RInsert(root , 10) ;
+RInsert(root , 9) ;
 
 Inorder(root) ;
 
