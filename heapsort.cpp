@@ -66,8 +66,11 @@ int main(){
             cout<< H[i]<<endl;
     }
 
+     
+     for(int i=7 ; i> 1 ;i--){
+        Delete(H, i) ; 
+     }
 
- cout<<Delete(H, 7) ;
 
     for( int i =1 ; i<=7 ;i++){
             cout<< H[i]<<endl;
