@@ -52,7 +52,7 @@ int Delete(int A[] , int n){
 
 int main(){
 
-    int H[] = {0 ,10,20,30,25,5,40,35}  ;
+    int H[] = { 0 ,10,20,30,25,5,40,35}  ;
  
 
     for(int i = 2  ; i<=7 ;i++){
@@ -67,12 +67,12 @@ int main(){
     }
 
      
-     for(int i=7 ; i> 1 ;i--){
-        Delete(H, i) ; 
-     }
+    //  for(int i=7 ; i> 1 ;i--){
+    //     Delete(H, i) ; 
+    //  }
 
 
-    for( int i =1 ; i<=7 ;i++){
-            cout<< H[i]<<endl;
-    }
+    // for( int i =1 ; i<=7 ;i++){
+    //         cout<< H[i]<<endl;
+    // }
 }
