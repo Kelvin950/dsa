@@ -53,8 +53,103 @@ console.log(a);
 }
 
 
-Heapsort([4,
-1,
-3 ,2 ,16, 9, 10, 14, 8,
-7 ]  , 9)
+// Heapsort([4,5,2,1,3]  , 5)
+
+function insert(A, index){
+ 
+  
+
+  while(index >0 ){
+let parent = Math.floor((index - 1) / 2);
+    if(A[index] > A[parent]){
+
+      let temp =  A[index] ;
+      A[index] =  A[parent] ;
+      A[parent]=temp ;
+
+      index = parent ; 
+
+    }
+    else break ;
+  }
+
+
+}
 console.log(b)
+
+
+
+class PriorityQueue{
+
+    
+  constructor(size){
+    this.heapSize = size ;
+    this._size = 0 ;
+    this._array =  []
+  }
+      
+
+push(value){
+   
+  if(this.full()){
+    throw new Error('queue is full') ;
+  }
+
+  this._array.push(value) ;
+ 
+
+  insert(this._array , this._size)
+   console.log(this._array);
+ this._size++;
+}
+
+
+pop(){
+      
+  if(this.isempty()){
+    throw new Error('queue is empty');
+
+  }
+
+  let max =  this._array[0] ;
+let temp =   this._array[0] ; 
+ this._array[0] = this._array[this._size-1] ;
+ this._array[this._size-1]=  temp;
+ this._array.pop() ;
+  Maxheapify(this._array , 0) ;
+  console.log(this._array ,'ew')
+this._size-- ;
+  return max ;
+}
+ 
+top(){
+
+  return  this._array[0];
+}
+
+
+full(){
+
+  return  this._size === this.heapSize ;
+}
+
+isempty(){
+
+  return    this._size == 0  ;
+}
+
+
+}
+
+let pq =  new PriorityQueue(5) ;
+
+pq.push(4) ;
+pq.push(5);
+pq.push(2) ;
+pq.push(1);
+pq.push(3);
+console.log(pq.pop())
+console.log(pq.pop());
+console.log(pq.pop());
+console.log(pq.pop());
+console.log(pq.pop());
