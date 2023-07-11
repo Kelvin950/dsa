@@ -47,8 +47,29 @@ function bubbleSortA(A) {
 
 
 
+function insertionSort(A){
+    
+    let x ,  j ;
+
+    for(let i = 1 ; i< A.length ;i++){
+
+         j =  i-1 ; 
+         x =  A[i] ;
+
+         while( j  >-1  &&  A[j] >x){
+
+            A[j+1] =  A[j] ;
+            j--
+         }
+
+        A[j+1] =x ;
+    }
+
+}
+
 
 const A =  [ 10, 3,1,2] ;
 
-bubbleSort(A) ;
+// bubbleSort(A) ;
+insertionSort(A)
 console.log(A) ;
