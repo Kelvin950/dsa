@@ -67,9 +67,30 @@ function insertionSort(A){
 
 }
 
+function selectionSort( A) {
+
+ 
+ let  k  , j ;
+  for(let  i = 0   ;i < A.length ;i++){
+     
+      for(k =j = i  ;  j<A.length ;j++){
+
+             if(A[j] < A[k]){
+
+              k=j ;
+             }         
+
+      }
+
+      swap(A , i , k) ;
+     
+  }
+
+}
 
 const A =  [ 10, 3,1,2] ;
 
 // bubbleSort(A) ;
-insertionSort(A)
+// insertionSort(A)
+selectionSort(A) ;
 console.log(A) ;
