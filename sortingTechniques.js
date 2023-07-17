@@ -88,9 +88,49 @@ function selectionSort( A) {
 
 }
 
-const A =  [ 10, 3,1,2] ;
+
+function quicksort(A , start , end){
+
+
+  if(end <= start) return  ;
+
+ 
+     let pivot = partition(A , start , end) ;
+     partition(A , 0 , pivot-1) ;
+     partition(A ,pivot+1, end) 
+
+  
+   
+}
+
+function partition(A , start ,end){
+
+  let i =  start-1 ;
+  let pivot =  end ;
+
+  for(let j = start ;j<=end-1 ;j++){
+       
+   if(A[j] < A[pivot]){
+    i++ ;
+
+    swap(A , i , j)
+   }
+
+
+
+  }
+
+     i++ ;
+   swap(A , i ,pivot) ;
+
+ 
+   return i ;
+
+}
+const A  =   [ 10, 3,1,2] ;
 
 // bubbleSort(A) ;
 // insertionSort(A)
-selectionSort(A) ;
+// selectionSort(A) ;
+quicksort(A , 0 , A.length-1) ;
 console.log(A) ;
