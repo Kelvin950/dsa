@@ -100,19 +100,19 @@ function probe(H , index){
  
 
     let i= 0
-    while(H[(index+i)%10] !=0){
+    while(H[(index+i*i)%10] !=0){
         i++
     }
 
 
-    return (index+i)%10 ;
+    return (index+i*i)%10 ;
 }
 
 function linearProbinginsert(H , key){
 
     let index =  hash(key) ;
 
-    if(H[index]!=0){
+    if(H[index]!=0)  {
          
         index = probe(H , index);
     }
@@ -129,12 +129,12 @@ let index = hash(key) ;
 
 let i= 0 ;
 
-while(H[(index+i)%10] !== key){
+while(H[(index+i*i)%10] !== key){
     i++ ;
-     if(H[(index+i)%10] == 0)return -1
+     if(H[(index+i*i)%10] == 0)return -1
 }
 
-return  (index+i)%10 ;
+return  (index+i*i)%10 ;
 }
 
 let  H =  Array(10).fill(0)
@@ -145,6 +145,7 @@ let  H =  Array(10).fill(0)
 
 linearProbinginsert(H , 55)
 linearProbinginsert(H , 5)
+linearProbinginsert(H , 75)
 linearProbinginsert(H , 100)
 linearProbinginsert(H, 10)
 console.log(H)
